@@ -11,7 +11,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends BaseActivity {
 
     @BindView(R.id.tip)
     TextView tip;
@@ -19,11 +19,12 @@ public class MainActivity extends AppCompatActivity {
     SwipeRefreshLayout srLayout;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-        ButterKnife.bind(this);
+    void initData() {
 
+    }
+
+    @Override
+    void initView() {
         srLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
@@ -36,6 +37,11 @@ public class MainActivity extends AppCompatActivity {
                 }, 1000);
             }
         });
+    }
+
+    @Override
+    int getlayout() {
+        return R.layout.activity_main;
     }
 
     @OnClick({R.id.tip, R.id.sr_layout})
